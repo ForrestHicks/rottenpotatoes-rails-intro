@@ -26,10 +26,10 @@ class MoviesController < ApplicationController
     if @sort
       @movie = Movie.order(@sort)
       if @user_ratings
-        @movie = @movie.where(rating: params[:ratings].keys) if params[:ratings].present?
+        @movie = @movie.where(@user_ratings) if params[:ratings].present?
       end
     elsif @user_ratings
-      @movie = Movie.where(rating: params[:ratings].keys) if params[:ratings].present?
+      @movie = Movie.where(@user_ratings) if params[:ratings].present?
     else
       @movie = Movie.all
     end
