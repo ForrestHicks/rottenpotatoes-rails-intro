@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.uniq.pluck(:rating)
     
     if params[:ratings].present?
-      @user_ratings = Movie.where(rating: params[:ratings])
+      @user_ratings = Movie.where(rating: params[:ratings].keys)
     end
     
     if params[:sort].present?
