@@ -21,9 +21,10 @@ class MoviesController < ApplicationController
     if params[:sort].present?
       @sort = params[:sort]
     end
-    flash[:notice] = "i got here"
+    
     if @sort
       @movie = Movie.order(@sort)
+      flash[:notice] = "i got here"
       if @user_ratings
         
         @movie = @movie.where(rating: @rating_settings.keys) if params[:ratings].present?
