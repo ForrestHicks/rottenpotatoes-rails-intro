@@ -25,6 +25,7 @@ class MoviesController < ApplicationController
     if @sort
       @movie = Movie.order(@sort)
       if @user_ratings
+        flash[:notice] = "i got here"
         @movie = @movie.where(rating: @rating_settings.keys) if params[:ratings].present?
       end
     elsif @user_ratings
