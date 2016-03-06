@@ -15,20 +15,20 @@ class MoviesController < ApplicationController
     
     if params[:ratings].present?
       @user_ratings = Movie.where(rating: params[:ratings].keys)
-      @rating_settings = params[:ratings]
+      session[:rating_settings] = params[:ratings]
     end
     
     if params[:sort].present?
-      @sort = params[:sort]
+      session[:sort] = params[:sort]
     end
     
-    if @sort
-      @movie = Movie.order(@sort)
-      if @user_ratings
-        @movie = @movie.where(rating: @rating_settings.keys) if params[:ratings].present?
+    if session[:sort].present?
+      @movie = Movie.order(session[:sort])
+      if session[:rating_settings].present?
+        @movie = @movie.where(rating: session[:rating_settings].keys)
       end
     elsif @user_ratings
-      @movie = Movie.where(rating: @rating_settings.keys) if params[:ratings].present?
+      @movie = Movie.where(rating: session[:rating_settings].keys)
     else
       @movie = Movie.all
     end
