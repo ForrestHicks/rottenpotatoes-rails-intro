@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = Movie.all_ratings
+    @all_ratings = Movie.uniq.pluck(:rating)
     if params[:sort].present?
       @movies = Movie.order(params[:sort])
     else
