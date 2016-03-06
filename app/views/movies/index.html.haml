@@ -4,7 +4,7 @@
   Include:
   - @all_ratings.each do |rating|
     = rating
-    = check_box_tag "ratings[#{rating}]", 1, @user_ratings.present? ? (@user_ratings.include?(rating) ? true : false) : false
+    = check_box_tag "ratings[#{rating}]", 0, @user_ratings.present? ? (@user_ratings.include?(rating) ? true : false) : false
   = submit_tag 'Refresh'
 
 
