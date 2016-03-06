@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   
-  @all_ratings = Movies.all_ratings
+  @all_ratings = Movie.all_ratings
 
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date)
