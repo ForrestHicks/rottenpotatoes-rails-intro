@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  
+  @all_ratings = Movies.all_ratings
 
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date)
@@ -43,12 +45,6 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
-    redirect_to movies_path
-  end
-  
-  def haha
-    @movie = Movie.find(params[:id])
-    flash[:notice] = "#{@movie.title} was laughed at."
     redirect_to movies_path
   end
   
